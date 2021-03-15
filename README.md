@@ -1,2 +1,3 @@
-# moodle_mcq_randomiser
+# MOODLE MCQ Randomiser
+
 A simple script for randomising Moodle MCQs
