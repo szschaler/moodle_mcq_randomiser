@@ -2,8 +2,6 @@ package uk.ac.kcl.inf.szschaler.moodle.mcq_randomiser;
 
 import java.io.File;
 
-import org.glassfish.jaxb.core.marshaller.CharacterEscapeHandler;
-
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -24,6 +22,9 @@ public class MCQRandomiser {
 		String importFileName = args[0];
 		int numAnswers = Integer.valueOf(args[1]);
 		String outputFileName = args[2];
+		
+		System.out.printf("Processing file \"%s\"\n\tinto file \"%s\",\n\tcreating groups of %d answers.\n", 
+				importFileName, outputFileName, numAnswers);
 
 		try {
 			File inputFile = new File(importFileName);
@@ -33,6 +34,8 @@ public class MCQRandomiser {
 			Quiz quiz = (Quiz) jaxbUnmarshaller.unmarshal(inputFile);
 
 			Quiz randomisedQuiz = quiz.randomise(numAnswers);
+			
+			System.out.printf("Created %d randomised questions.", randomisedQuiz.questions.size());
 			
 			File outputFile = new File(outputFileName);
 			
